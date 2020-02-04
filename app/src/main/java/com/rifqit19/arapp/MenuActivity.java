@@ -1,7 +1,9 @@
 package com.rifqit19.arapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +13,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -39,6 +44,7 @@ import static java.lang.System.out;
 public class MenuActivity extends AppCompatActivity {
 
     Button btn_menu1,btn_menu2,btn_menu3,btn_menu4,btn_menu5;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,10 @@ public class MenuActivity extends AppCompatActivity {
         btn_menu3 = findViewById(R.id.btn_menu3);
         btn_menu4 = findViewById(R.id.btn_menu4);
         btn_menu5 = findViewById(R.id.btn_menu5);
+        toolbar = findViewById(R.id.toolbar_menu);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         btn_menu1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,5 +212,25 @@ public class MenuActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.menu_about){
+            Intent about = new Intent(MenuActivity.this, AboutActivity.class);
+            startActivity(about);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
