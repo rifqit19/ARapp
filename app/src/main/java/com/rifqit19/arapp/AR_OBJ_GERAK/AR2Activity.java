@@ -45,7 +45,6 @@ public class AR2Activity extends AppCompatActivity {
             }
         });
 
-
     }
 
     @SuppressLint("NewApi")
